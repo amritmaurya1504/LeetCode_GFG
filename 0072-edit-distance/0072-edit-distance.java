@@ -15,7 +15,9 @@ class Solution {
         if(s.charAt(i) == t.charAt(j)){
             return dp[i][j] = helper_fun(s,t,i-1,j-1,dp);
         }else{
-            return dp[i][j] = 1 + Math.min(helper_fun(s,t,i,j-1,dp),Math.min(helper_fun(s,t,i-1,j,dp),helper_fun(s,t,i-          1,j-1,dp)));
+            return dp[i][j] = 1 + Math.min(helper_fun(s,t,i,j-1,dp),
+                                           Math.min(helper_fun(s,t,i-1,j,dp),
+                                                    helper_fun(s,t,i-1,j-1,dp)));
         }
     }
 }
