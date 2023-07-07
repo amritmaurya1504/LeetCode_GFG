@@ -31,34 +31,15 @@ class GFG {
 }
 // } Driver Code Ends
 
-class Pair{
-    int node;
-    int parent;
-    Pair(int node, int parent){
-        this.node = node;
-        this.parent = parent;
-    }
-}
 class Solution {
-    // Function to detect cycle in an undirected graph.
-    public boolean detectCycle_bfs(int node, int V, ArrayList<ArrayList<Integer>> adj, boolean[] visited){
-        Queue<Pair> q = new LinkedList<>();
+    public boolean detectCycle_dfs(int node, int parent, int V, ArrayList<ArrayList<Integer>> adj, 
+    boolean[] visited){
         visited[node] = true;
-        q.add(new Pair(node, -1));
         
-        while(!q.isEmpty()){
-            int vertex = q.peek().node;
-            int parent = q.peek().parent;
-            q.remove();
-            
-            for(int adjacentNode : adj.get(vertex)){
-                if(!visited[adjacentNode]){
-                    q.add(new Pair(adjacentNode, vertex));
-                    visited[adjacentNode] = true;
-                }else if(parent != adjacentNode){
-                    return true;
-                }
-            }
+        for(int it : adj.get(node)){
+            if(!visited[it]){
+                if(detectCycle_dfs(it, node, V, adj, visited)) return true;
+            }else if(it != parent) return true;
         }
         
         return false;
@@ -67,7 +48,7 @@ class Solution {
         boolean[] visited = new boolean[V];
         for(int i = 0; i < V; i++){
             if(!visited[i]){
-                if(detectCycle_bfs(i, V, adj, visited)) return true;
+                if(detectCycle_dfs(i, -1, V, adj, visited)) return true;
             }
         }
         
