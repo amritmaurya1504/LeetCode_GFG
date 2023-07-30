@@ -125,21 +125,27 @@ class Node{
 */
 class Solution
 {
+    public void inorder(Node root, ArrayList<Node> ds){
+        if(root == null) return;
+        
+        inorder(root.left, ds);
+        ds.add(root);
+        inorder(root.right, ds);
+    }
     // returns the inorder successor of the Node x in BST (rooted at 'root')
 	public Node inorderSuccessor(Node root,Node x)
-         {
-          ArrayList<Node> ans = new ArrayList<>();
-          inOrder(root,ans);
-          int temp = ans.indexOf(x);
-          if(temp == ans.size()-1) return null;
-          else return ans.get(temp+1);
-         }
-    public void inOrder(Node root, ArrayList<Node> ans){
-        if(root == null){
-            return;
+    {
+        ArrayList<Node> in = new ArrayList<>();
+        inorder(root, in);
+        
+        for(Node n : in){
+            if(n == x){
+                int indxOfN = in.indexOf(n);
+                if(indxOfN + 1 >= in.size()) return new Node(-1);
+                return in.get(indxOfN + 1);
+            }
         }
-        inOrder(root.left, ans);
-        ans.add(root);
-        inOrder(root.right,ans);
+        
+        return null;
     }
 }
