@@ -36,29 +36,36 @@ class Main {
 
 class Solution
 {
-    public void helper_fun(String s, boolean[] map, ArrayList<String> ans, StringBuilder temp){
-        if(temp.length() >= s.length()){
-            ans.add(temp.toString());
+    public ArrayList<String> permutation(String s)
+    {
+        //Your code here
+        int n = s.length();
+        int[] map = new int[n];
+        ArrayList<String> ans = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        solve(s, sb, ans, map);
+        
+        Collections.sort(ans);
+        return ans;
+        
+    }
+    
+    private void solve(String s, StringBuilder sb,  ArrayList<String> ans,int map[]){
+        if(sb.length() == s.length()){
+            ans.add(sb.toString());
             return;
         }
         
-        for(int i = 0; i < map.length; i++){
-            if(map[i] == false){
-                temp.append(s.charAt(i));
-                map[i] = true;
-                helper_fun(s, map, ans, temp);
-                map[i] = false;
-                temp.deleteCharAt(temp.length() - 1);
+        for(int i = 0; i < s.length(); i++){
+            if(map[i] == 0){
+                map[i] = 1;
+                sb.append(s.charAt(i));
+                solve(s, sb, ans, map);
+                sb.deleteCharAt(sb.length() -1);
+                map[i] = 0;
             }
+          
         }
-    }
-    public ArrayList<String> permutation(String S)
-    {
-        ArrayList<String> ans = new ArrayList<>();
-        boolean[] map = new boolean[S.length()];
-        helper_fun(S, map, ans, new StringBuilder());
-        Collections.sort(ans);
-        return ans;
     }
 	   
 }
