@@ -34,6 +34,27 @@ public class Main {
 
 class Solution {
     int print2largest(int arr[], int n) {
+        int firstMax = -1;
+        int secondMax = -1;
+        
+        for(int i : arr){
+            if(i > firstMax){
+                secondMax = firstMax;
+                firstMax = i;
+            }
+            
+            if(i > secondMax && i != firstMax){
+                secondMax = i;
+            }
+        }
+        
+        return secondMax;
+    }
+}
+
+/*
+class Solution {
+    int print2largest(int arr[], int n) {
         int firstMax = Integer.MIN_VALUE;
         int secondMax = -1;
         
@@ -50,3 +71,4 @@ class Solution {
         return secondMax;
     }
 }
+*/
