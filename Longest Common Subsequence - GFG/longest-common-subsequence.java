@@ -26,29 +26,28 @@ class GFG {
 
 class Solution
 {
-    static int[][] dp;
+    static int solve(int i, int j, String s1, String s2, int[][] dp){
+        if(i < 0 || j < 0) return 0;
+        
+        if(dp[i][j] != -1) return dp[i][j];
+        
+        int take = 0, notTake = 0;
+        if(s1.charAt(i) == s2.charAt(j)){
+            take = 1 + solve(i - 1, j - 1, s1, s2, dp);
+        }else{
+            notTake = Math.max(solve(i - 1, j, s1, s2, dp), solve(i , j - 1, s1, s2, dp));
+        }
+        
+        return dp[i][j] = Math.max(take, notTake);
+    }
     //Function to find the length of longest common subsequence in two strings.
     static int lcs(int x, int y, String s1, String s2)
     {
-        dp = new int[x+1][y+1];
-        for(int[] row : dp){
-            Arrays.fill(row,-1);
+        int[][] dp = new int[x+1][y+1];
+        for(int[] i : dp){
+            Arrays.fill(i, -1);
         }
-        return helper_fun(x,y,s1,s2);
-    }
-    
-    static int helper_fun(int n, int m, String s1, String s2){
-        if(n == 0 || m == 0) return 0;
-        
-        if(dp[n][m] != -1) return dp[n][m];
-        
-        if(s1.charAt(n-1) == s2.charAt(m-1)){
-            dp[n][m] = 1 + helper_fun(n-1,m-1,s1,s2);
-        }else{
-            dp[n][m] = Math.max(helper_fun(n-1,m,s1,s2),helper_fun(n,m-1,s1,s2));
-        }
-        
-        return dp[n][m];
+        return solve(x-1, y-1, s1, s2, dp);
     }
     
 }
