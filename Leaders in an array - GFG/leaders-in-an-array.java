@@ -7,6 +7,7 @@ class Array {
     
 	public static void main (String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		PrintWriter ot = new PrintWriter(System.out);
 		int t = Integer.parseInt(br.readLine().trim()); //Inputting the testcases
 		
 		while(t-->0){
@@ -29,19 +30,21 @@ class Array {
 		    //calling leaders() function
 		    res = obj.leaders(arr, n);
 		    
-		    //appending result to a String
+
 		    for(int i=0; i<res.size(); i++){
-		        str.append(res.get(i)+" ");
+		        ot.print(res.get(i)+" ");
 		    }
 		    
-		    //printing the String
-		    System.out.println(str);
+		    ot.println();
 		}
+		ot.close();
 		
 	}
 }
 
 // } Driver Code Ends
+
+
 
 
 class Solution{
