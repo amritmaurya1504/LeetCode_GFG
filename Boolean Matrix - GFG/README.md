@@ -1,6 +1,6 @@
 # Boolean Matrix
 ## Medium
-<div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given a boolean matrix of size RxC where each cell contains either&nbsp;0 or 1, modify it such that if a matrix cell matrix[i][j] is 1 then all the cells in its i<sup>th</sup> row and j<sup>th</sup> column will become 1.</span></p>
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size: 18px;">Given a boolean matrix of size RxC where each cell contains either 0 or 1, modify it such that if a matrix cell matrix[i][j] is 1 then all the cells in its i</span><sup>th</sup><span style="font-size: 18px;">&nbsp;row and j</span><sup>th</sup><span style="font-size: 18px;">&nbsp;column will become 1.</span></p>
 <p><strong><span style="font-size: 18px;">Example 1:</span></strong></p>
 <pre><span style="font-size: 18px;"><strong>Input:</strong>
 R = 2, C = 2
